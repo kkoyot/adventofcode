@@ -54,6 +54,20 @@ function playTheGame() {
 	console.log('Final result', calculateResult(pickedData.boards[winner], ber));
 }
 
+function playTheGameUntilLast() {
+	const scoreBoards = createScoreBoards(pickedData.boards);
+	let winner;
+	let ber;
+	while(winner === undefined) {
+		ber = drawNumber();
+		console.log('drawing', ber);
+		markNumberOnBoards(ber, scoreBoards);
+		winner = checkWinner(scoreBoards);
+	}
+	console.log(winner);
+	console.log('Final result', calculateResult(pickedData.boards[winner], ber));
+}
+
 function calculateResult(winningBoard, lastNumber) {
 	const unmarkedSum = winningBoard.reduce((acc, field) => {
 		if (!field.marked) {
